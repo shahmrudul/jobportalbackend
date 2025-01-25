@@ -30,7 +30,7 @@ router.get('/internshipapplication',authenticateToken,async(req,res)=>{
 router.post('/jobapplication',async(req,res)=>{
     try{
     const{companyName,user,job}=req.body;
-    let jobapplicationcheck= await JobApplication.find({user:user})
+    let jobapplicationcheck= await JobApplication.find({user:user,job:job})
     
     if(jobapplicationcheck.length!==0){
         return res.status(500).json({Error:'You have already applied for this Job'})
@@ -57,7 +57,7 @@ router.post('/internshipapplication',async(req,res)=>{
     try{
         const{companyName,user,internship}=req.body;
         let internshipapplicationcheck= await InternshipApplication.find({
-            user:user
+            user:user,internship:internship
         })
         if(internshipapplicationcheck.length!==0){
             return res.status(500).json({Error:'You have already applied for this Internship'})
