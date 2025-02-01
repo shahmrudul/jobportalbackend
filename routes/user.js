@@ -1,8 +1,10 @@
 const express=require('express');
 const User=require('../models/user.js');
 const jwt=require('jsonwebtoken');
+const dotenv=require('dotenv')
+dotenv.config()
 const router=express.Router()
-let JWT_secretkey='1a808dfc4138e8e3f3a6bcff8031d7d5d990dff06daac51b5151446e5532364f';
+let JWT_secretkey=process.env.JWT_secretkey;
 const authenticateToken=require('../middleware/authentication.js')
 
 router.get('/',(req,res)=>{
